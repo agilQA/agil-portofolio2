@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agil Krisna Tripujianto — Technical QA & SDET Portfolio</title>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            400: '#94A3B8',
+                            500: '#64748B',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                            950: '#020617',
+                        },
+                        emerald: {
+                            50: '#ECFDF5',
+                            100: '#D1FAE5',
+                            500: '#10B981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        blue: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar & crisp border details */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8FAFC;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+        .hairline-border {
+            border: 1px solid #E2E8F0;
+        }
+        .dot-grid {
+            background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-slate-200 selection:text-slate-900 min-h-screen flex flex-col">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-in-out pointer-events-none">
+        <div class="bg-slate-900 text-white font-mono text-xs px-4 py-3 rounded-lg shadow-xl border border-slate-700 flex items-center space-x-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="toast-message">Email address copied to clipboard</span>
+        </div>
+    </div>
+
+    <!-- 1. TOP STICKY NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Monogram & Status -->
+            <div class="flex items-center space-x-3">
+                <a href="#" class="font-mono font-bold text-slate-900 tracking-tight text-sm hover:opacity-80 transition-opacity">
+                    AGIL.QA <span class="text-slate-400 font-normal">// SDET & WEB DEV</span>
+                </a>
+                <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-ping"></span>
+                    AVAILABLE FOR QA / SDET ROLES
+                </span>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-xs font-mono font-medium text-slate-600">
+                <a href="#projects" class="hover:text-slate-900 transition-colors">01. PROJECTS</a>
+                <a href="#experience" class="hover:text-slate-900 transition-colors">02. EXPERIENCE</a>
+                <a href="#stack" class="hover:text-slate-900 transition-colors">03. STACK & ARCHITECTURE</a>
+                <a href="#training" class="hover:text-slate-900 transition-colors">04. EDUCATION & CERTIFICATIONS</a>
+                <a href="#contact" class="hover:text-slate-900 transition-colors">05. CONTACT</a>
+            </nav>
+
+            <!-- Quick Action Button -->
+            <div class="flex items-center space-x-3">
+                <button onclick="copyToClipboard('agilkrisna01@gmail.com', 'Copied: agilkrisna01@gmail.com')" class="inline-flex items-center px-3 py-1.5 border border-slate-300 rounded text-xs font-mono font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 hover:border-slate-400 transition-all focus:outline-none focus:ring-2 focus:ring-slate-400">
+                    <svg class="w-3.5 h-3.5 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    <span>COPY EMAIL</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-grow">
+
+        <!-- 2. HERO SECTION -->
+        <section class="border-b border-slate-200 bg-slate-50/50 py-12 md:py-20 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Dossier Brief -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded bg-slate-900 text-white font-mono text-xs">
+                            <span>TECHNICAL QUALITY ASSURANCE STAFF</span>
+                            <span class="text-slate-400">|</span>
+                            <span class="text-emerald-400">AUTOMATION & PERFORMANCE</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Engineering resilient enterprise applications through <span class="text-blue-600 underline decoration-slate-300 decoration-1 underline-offset-4">automated testing</span> & API contracts.
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-600 max-w-2xl font-normal leading-relaxed">
+                            Technical QA Staff with 4+ years of cross-functional experience bridging software development (PHP/Laravel, JavaScript) with software testing engineering. Specializing in test automation suites (Playwright, Cypress, Selenium), API contract validation, CI/CD integration, and AI-assisted autonomous testing workflows for enterprise HRIS, banking, BUMN, and logistics platforms.
+                        </p>
+
+                        <!-- Key Engineering Metrics Banner -->
+                        <div class="grid grid-cols-3 gap-4 pt-2 border-t border-b border-slate-200 py-4 font-mono text-xs">
+                            <div>
+                                <div class="text-slate-400 uppercase tracking-wider text-[10px]">Defect Escapes</div>
+                                <div class="text-xl font-bold text-emerald-600 stroke-emerald-600">&gt;30% Reduction</div>
+                            </div>
+                            <div class="border-l border-slate-200 pl-4">
+                                <div class="text-slate-400 uppercase tracking-wider text-[10px]">Domain Focus</div>
+                                <div class="text-xl font-bold text-slate-900">HRIS / BUMN / Fin</div>
+                            </div>
+                            <div class="border-l border-slate-200 pl-4">
+                                <div class="text-slate-400 uppercase tracking-wider text-[10px]">Hybrid Stack</div>
+                                <div class="text-xl font-bold text-blue-600">QA + Web Dev</div>
+                            </div>
+                        </div>
+
+                        <!-- Hero CTAs & Metadata -->
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <a href="#projects" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-mono text-xs font-semibold rounded shadow-sm transition-all flex items-center space-x-2">
+                                <span>EXPLORE CASE STUDIES</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/agilkrisnatripujianto" target="_blank" rel="noopener" class="px-5 py-2.5 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 font-mono text-xs font-semibold rounded transition-all flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.11.75-1.82 1.76-1.82 1.05 0 1.5.76 1.5 1.82v4.93h2.79M6.46 8.91a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.4 9.59V9.96H5.06v8.54h2.8z"/></svg>
+                                <span>LINKEDIN PROFILE</span>
+                            </a>
+                        </div>
+
+                        <!-- Direct Contacts Pill -->
+                        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-slate-500 pt-2">
+                            <span class="flex items-center"><svg class="w-3.5 h-3.5 mr-1.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Jakarta Metro Area</span>
+                            <span class="flex items-center"><svg class="w-3.5 h-3.5 mr-1.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>+62 851 5635 0536</span>
+                            <span class="flex items-center"><svg class="w-3.5 h-3.5 mr-1.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>agilkrisna01@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive QA Live Telemetry Terminal Widget -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-slate-900 rounded-lg shadow-2xl border border-slate-800 overflow-hidden text-slate-200 font-mono text-xs">
+                            <!-- Terminal Header Bar -->
+                            <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                                    <span class="ml-2 text-slate-400 text-[11px]">telemetry_runner_v4.1.sh</span>
+                                </div>
+                                <div class="text-[10px] text-emerald-400 flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                                    SUITE PASSING
+                                </div>
+                            </div>
+
+                            <!-- Terminal Tab Switcher -->
+                            <div class="flex border-b border-slate-800 bg-slate-900 text-[11px]">
+                                <button onclick="switchTerminalTab('tab-e2e')" id="btn-tab-e2e" class="term-tab px-4 py-2 text-white border-b-2 border-emerald-500 font-semibold bg-slate-800/50">E2E Playwright</button>
+                                <button onclick="switchTerminalTab('tab-api')" id="btn-tab-api" class="term-tab px-4 py-2 text-slate-400 hover:text-white border-b-2 border-transparent">API Contract</button>
+                                <button onclick="switchTerminalTab('tab-stats')" id="btn-tab-stats" class="term-tab px-4 py-2 text-slate-400 hover:text-white border-b-2 border-transparent">CI Telemetry</button>
+                            </div>
+
+                            <!-- Terminal Content Body -->
+                            <div class="p-4 space-y-3 min-h-[280px]">
+
+                                <!-- Tab 1: Playwright Test Log -->
+                                <div id="tab-e2e" class="term-content space-y-2">
+                                    <div class="text-slate-500">&gt; npx playwright test tests/hris/leave-management.spec.ts --headed</div>
+                                    <div class="text-slate-400">[INFO] Injecting session bearer token (bypass UI login)...</div>
+                                    <div class="text-emerald-400 flex items-center justify-between">
+                                        <span>✓ [SG-CONFIG] Multi-currency Leave Accrual calculated</span>
+                                        <span class="text-slate-500 text-[10px]">142ms</span>
+                                    </div>
+                                    <div class="text-emerald-400 flex items-center justify-between">
+                                        <span>✓ [TH-CONFIG] Songkran Public Holiday validation rule</span>
+                                        <span class="text-slate-500 text-[10px]">98ms</span>
+                                    </div>
+                                    <div class="text-emerald-400 flex items-center justify-between">
+                                        <span>✓ [VN-CONFIG] Overtime payout formula check</span>
+                                        <span class="text-slate-500 text-[10px]">210ms</span>
+                                    </div>
+                                    <div class="text-emerald-400 flex items-center justify-between">
+                                        <span>✓ [DOM-CRAWLER] Autonomous element selector verified</span>
+                                        <span class="text-slate-500 text-[10px]">310ms</span>
+                                    </div>
+                                    <div class="border-t border-slate-800 pt-2 text-slate-300 flex justify-between items-center text-[11px]">
+                                        <span>Running: 4 passed (100%)</span>
+                                        <span class="text-emerald-400 font-bold">TOTAL EXEC TIME: 0.76s</span>
+                                    </div>
+                                </div>
+
+                                <!-- Tab 2: API Contract Check -->
+                                <div id="tab-api" class="term-content hidden space-y-2">
+                                    <div class="text-slate-500">&gt; postman-runner --environment=Staging-BUMN.json</div>
+                                    <div class="text-blue-400">GET /api/v2/employee/claims/audit-log</div>
+                                    <div class="bg-slate-950 p-2.5 rounded border border-slate-800 text-[11px] text-slate-300">
+                                        <div class="text-emerald-400">HTTP/1.1 200 OK (Response: 42ms)</div>
+                                        <div><span class="text-amber-400">Content-Type:</span> application/json</div>
+                                        <div><span class="text-amber-400">X-Trace-Id:</span> req_99210_bumn_prod</div>
+                                        <div class="text-slate-500">// Schema Contract Check: PASSED</div>
+                                    </div>
+                                    <div class="text-emerald-400">✓ API Schema Definition matches OpenAPI 3.0 spec</div>
+                                    <div class="text-emerald-400">✓ SLA Response Time &lt; 200ms benchmark</div>
+                                </div>
+
+                                <!-- Tab 3: CI Telemetry Summary -->
+                                <div id="tab-stats" class="term-content hidden space-y-3">
+                                    <div class="text-slate-400 text-[11px]">Jenkins CI Build Pipeline Telemetry (#4192)</div>
+                                    <div class="space-y-1.5">
+                                        <div class="flex justify-between text-[11px]">
+                                            <span class="text-slate-400">Automated Regression Coverage</span>
+                                            <span class="text-emerald-400 font-bold">88.4% (+14%)</span>
+                                        </div>
+                                        <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                            <div class="bg-emerald-500 h-full w-[88%]"></div>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <div class="flex justify-between text-[11px]">
+                                            <span class="text-slate-400">Post-Release Production Defects</span>
+                                            <span class="text-emerald-400 font-bold">-30.5% Reduction</span>
+                                        </div>
+                                        <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                            <div class="bg-blue-500 h-full w-[69.5%]"></div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-2 text-[10px] text-slate-500 border-t border-slate-800">
+                                        Pipeline status: Continuous Build Verification Active on Jenkins master.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Interactive Action Footer -->
+                            <div class="bg-slate-950 px-4 py-2 border-t border-slate-800 flex justify-between items-center text-[10px] text-slate-400">
+                                <span>Target: SunFish HRIS & Enterprise Suites</span>
+                                <button onclick="triggerTerminalAnimation()" class="hover:text-emerald-400 transition-colors flex items-center">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                                    Re-run Checks
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. FEATURED ENGINEERING PROJECTS & CASE STUDIES -->
+        <section id="projects" class="py-16 md:py-24 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200">
+                    <div>
+                        <div class="font-mono text-xs font-semibold text-blue-600 tracking-wider uppercase mb-1">01. CASE STUDIES & AUTOMATION ARCHITECTURE</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Featured QA & Software Engineering Work</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm max-w-md mt-4 md:mt-0">
+                        In-depth breakdown of automation framework development, AI-assisted DOM crawling, and high-impact regression engineering.
+                    </p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+                    <button onclick="filterProjects('all')" class="proj-filter px-3 py-1.5 rounded border border-slate-900 bg-slate-900 text-white font-medium" data-filter="all">ALL PROJECTS (4)</button>
+                    <button onclick="filterProjects('ai')" class="proj-filter px-3 py-1.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700" data-filter="ai">AI & AUTOMATION</button>
+                    <button onclick="filterProjects('enterprise')" class="proj-filter px-3 py-1.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700" data-filter="enterprise">ENTERPRISE QA & PERF</button>
+                    <button onclick="filterProjects('dev')" class="proj-filter px-3 py-1.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700" data-filter="dev">FULL-STACK WEB DEV</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- PROJECT 1: AI-Driven Autonomous Web Crawler -->
+                    <div class="project-card border border-slate-200 rounded-lg p-6 bg-white hover:border-slate-400 transition-all shadow-sm flex flex-col justify-between" data-category="ai">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded bg-blue-50 text-blue-700 border border-blue-200 font-mono text-[11px] font-semibold">AI AUTOMATION & PLAYWRIGHT</span>
+                                <span class="font-mono text-xs text-slate-400">PT. Indodev Niaga Internet</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-900">AI-Driven Autonomous Web Crawler & Playwright Generator</h3>
+
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Developed a local automation architecture (Express dashboard + LLM DOM parser) to autonomously crawl complex enterprise HRIS UI modules, auto-generate Playwright scripts, and bypass repetitive manual login flows via bearer token session injection.
+                            </p>
+
+                            <!-- Tech Badges -->
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Playwright</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">LLM / Gemini API</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Express JS</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">n8n Automation</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Tailwind CSS</span>
+                            </div>
+
+                            <!-- Highlights -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono space-y-1">
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Bypassed UI Login via Session Bearer Injection
+                                </div>
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Multi-Country HRIS Rules (SG, TH, VN) Automated
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-mono text-xs font-bold text-emerald-600">IMPACT: ~70% Faster Script Creation</span>
+                            <button onclick="openModal('modal-p1')" class="font-mono text-xs font-semibold text-slate-900 hover:text-blue-600 flex items-center space-x-1">
+                                <span>INSPECT ARCHITECTURE</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 2: Enterprise CI/CD Regression & Performance Suite -->
+                    <div class="project-card border border-slate-200 rounded-lg p-6 bg-white hover:border-slate-400 transition-all shadow-sm flex flex-col justify-between" data-category="enterprise">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono text-[11px] font-semibold">ENTERPRISE AUTOMATION & PERF</span>
+                                <span class="font-mono text-xs text-slate-400">BUMN & Banking Clients</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-900">Enterprise CI/CD Regression & JMeter / k6 Load Testing Suite</h3>
+
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Architected multi-framework test automation (Selenium WebDriver, Robot Framework, Cypress) embedded directly into Jenkins CI/CD build cycles for large-scale financial and enterprise clients. Executed API contract checks and heavy load testing with Apache JMeter & k6.
+                            </p>
+
+                            <!-- Tech Badges -->
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Selenium</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Robot Framework</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Cypress</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Postman API</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">JMeter / k6</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Jenkins</span>
+                            </div>
+
+                            <!-- Highlights -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono space-y-1">
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Over 30% Defect Escape Reduction Post-Release
+                                </div>
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Validated High-Traffic Banking Endpoints
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-mono text-xs font-bold text-emerald-600">IMPACT: &gt;30% Post-Release Defect Reduction</span>
+                            <button onclick="openModal('modal-p2')" class="font-mono text-xs font-semibold text-slate-900 hover:text-blue-600 flex items-center space-x-1">
+                                <span>INSPECT ARCHITECTURE</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 3: n8n + Playwright Workflow Automation -->
+                    <div class="project-card border border-slate-200 rounded-lg p-6 bg-white hover:border-slate-400 transition-all shadow-sm flex flex-col justify-between" data-category="ai">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded bg-purple-50 text-purple-700 border border-purple-200 font-mono text-[11px] font-semibold">WORKFLOW AUTOMATION</span>
+                                <span class="font-mono text-xs text-slate-400">Internal Tooling</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-900">n8n + Playwright Automated Test Telemetry Pipeline</h3>
+
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Streamlined quality reporting by triggering headless Playwright test suites via n8n webhook nodes. Captured real-time execution logs, pass/fail metrics, and stack traces, dynamically formatting and outputting live data into Google Sheets dashboards for stakeholders.
+                            </p>
+
+                            <!-- Tech Badges -->
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">n8n Integration</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Playwright CLI</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Google Sheets API</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Webhooks</span>
+                            </div>
+
+                            <!-- Highlights -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono space-y-1">
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Zero-Touch Weekly Regression Reporting
+                                </div>
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Instant Slack / Email Defect Alert Triggers
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-mono text-xs font-bold text-emerald-600">IMPACT: Real-time Stakeholder Visibility</span>
+                            <button onclick="openModal('modal-p3')" class="font-mono text-xs font-semibold text-slate-900 hover:text-blue-600 flex items-center space-x-1">
+                                <span>INSPECT ARCHITECTURE</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 4: Customer Complaint & QA Ticketing Web App -->
+                    <div class="project-card border border-slate-200 rounded-lg p-6 bg-white hover:border-slate-400 transition-all shadow-sm flex flex-col justify-between" data-category="dev">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded bg-amber-50 text-amber-700 border border-amber-200 font-mono text-[11px] font-semibold">FULL-STACK WEB DEV</span>
+                                <span class="font-mono text-xs text-slate-400">PT. Aplikanusa Lintasarta</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-900">Customer Complaint & QA Ticket Management System</h3>
+
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Engineered a custom web application from scratch to ingest customer complaints and systematically convert them into structured QA triage tickets. Built features for assignment routing, priority categorization, status tracking, and automated email/WhatsApp alerts.
+                            </p>
+
+                            <!-- Tech Badges -->
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">HTML5 / CSS3</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">JavaScript</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Bootstrap</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">PHP Workflow</span>
+                                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded">Email/WA Notification</span>
+                            </div>
+
+                            <!-- Highlights -->
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs font-mono space-y-1">
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Structured Complaint-to-QA Triage Workflow
+                                </div>
+                                <div class="text-slate-700 font-semibold flex items-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                    Automated Webhook & Notification Dispatch
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-mono text-xs font-bold text-emerald-600">IMPACT: Accelerated Support-to-QA Handover</span>
+                            <button onclick="openModal('modal-p4')" class="font-mono text-xs font-semibold text-slate-900 hover:text-blue-600 flex items-center space-x-1">
+                                <span>INSPECT ARCHITECTURE</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CAREER EXPERIENCE TIMELINE -->
+        <section id="experience" class="py-16 md:py-24 border-b border-slate-200 bg-slate-50/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200">
+                    <div>
+                        <div class="font-mono text-xs font-semibold text-blue-600 tracking-wider uppercase mb-1">02. WORK EXPERIENCE</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Professional Career History</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm max-w-md mt-4 md:mt-0">
+                        Proven engineering track record across enterprise software vendors, fast-paced logistics tech, and custom web dev.
+                    </p>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="space-y-12">
+
+                    <!-- ROLE 1: PT Indodev Niaga Internet -->
+                    <div class="relative pl-6 md:pl-8 border-l-2 border-slate-300 space-y-4">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-900 border-4 border-white"></div>
+                        
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between font-mono text-xs">
+                            <span class="text-blue-600 font-bold uppercase tracking-wider">PT. INDODEV NIAGA INTERNET (DATAON) — TANGERANG SELATAN</span>
+                            <span class="text-slate-500 bg-white px-2.5 py-1 rounded border border-slate-200 w-fit mt-1 sm:mt-0">AUG 2022 — PRESENT</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900">Technical Quality Assurance Staff</h3>
+
+                        <ul class="space-y-2.5 text-sm text-slate-600 list-disc list-inside">
+                            <li>Analyzed complex business & technical requirements to design end-to-end test plans and test case suites for SunFish HRIS enterprise modules.</li>
+                            <li>Executed manual testing (functional, regression, user acceptance testing) across web and mobile enterprise applications for large-scale BUMN (state-owned enterprises), banking/finance, and multinational corporations.</li>
+                            <li>Engineered and maintained robust automated test scripts using <strong>Selenium WebDriver, Robot Framework, and Cypress</strong>.</li>
+                            <li>Conducted backend RESTful API validation using <strong>Postman</strong> to ensure schema compliance and seamless service integration.</li>
+                            <li>Embedded automated regression test suites into the <strong>Jenkins CI/CD pipeline</strong>, enforcing early defect detection in every build cycle.</li>
+                            <li>Performed system load, stress, and stability testing using <strong>Apache JMeter</strong> to validate enterprise behavior under peak user concurrency.</li>
+                            <li>Achieved over <strong>30% reduction in post-release production defects</strong> through systematic regression optimization and test automation coverage expansion.</li>
+                        </ul>
+                    </div>
+
+                    <!-- ROLE 2: PT Sicepat Ekspres Indonesia -->
+                    <div class="relative pl-6 md:pl-8 border-l-2 border-slate-300 space-y-4">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between font-mono text-xs">
+                            <span class="text-slate-800 font-bold uppercase tracking-wider">PT. SICEPAT EKSPRES INDONESIA — JAKARTA</span>
+                            <span class="text-slate-500 bg-white px-2.5 py-1 rounded border border-slate-200 w-fit mt-1 sm:mt-0">FEB 2022 — JUL 2022</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900">Junior Quality Assurance</h3>
+
+                        <ul class="space-y-2.5 text-sm text-slate-600 list-disc list-inside">
+                            <li>Reviewed product PRDs and technical architecture documents to build comprehensive test matrices for high-throughput logistics platforms.</li>
+                            <li>Executed manual functional and regression testing across logistics web portals and mobile operational apps.</li>
+                            <li>Documented, categorized, and tracked software defects in <strong>JIRA & Trello</strong>, collaborating closely with developers in daily Agile (Scrum) sprint cycles.</li>
+                            <li>Assisted in authoring and updating automation scripts utilizing <strong>Selenium, Robot Framework, and Cypress</strong>.</li>
+                            <li>Executed API endpoint testing via Postman to validate shipment tracking flows and payment gateway integrations.</li>
+                        </ul>
+                    </div>
+
+                    <!-- ROLE 3: PT Aplikanusa Lintasarta -->
+                    <div class="relative pl-6 md:pl-8 border-l-2 border-slate-300 space-y-4">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between font-mono text-xs">
+                            <span class="text-slate-800 font-bold uppercase tracking-wider">PT. APLIKANUSA LINTASARTA — JAKARTA</span>
+                            <span class="text-slate-500 bg-white px-2.5 py-1 rounded border border-slate-200 w-fit mt-1 sm:mt-0">JUL 2021 — JAN 2022</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900">Web Developer</h3>
+
+                        <ul class="space-y-2.5 text-sm text-slate-600 list-disc list-inside">
+                            <li>Developed a custom web portal to handle incoming customer complaints and automatically transform them into actionable QA tickets for engineering resolution.</li>
+                            <li>Built custom web modules for ticket submission, status tracking, priority categorization, and team assignment.</li>
+                            <li>Created responsive, user-friendly UI interfaces using HTML, CSS, JavaScript, and Bootstrap framework.</li>
+                            <li>Integrated automated notification dispatchers via Email and WhatsApp to update stakeholders on real-time ticket state transitions.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TECHNICAL CAPABILITIES MATRIX -->
+        <section id="stack" class="py-16 md:py-24 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200">
+                    <div>
+                        <div class="font-mono text-xs font-semibold text-blue-600 tracking-wider uppercase mb-1">03. TECHNICAL CAPABILITIES</div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Tools, Frameworks & Engineering Stack</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm max-w-md mt-4 md:mt-0">
+                        Zero fluff percentages—just practical, battle-tested expertise across test engineering, web development, and DevOps integration.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Category 1: Test Automation & E2E -->
+                    <div class="border border-slate-200 rounded-lg p-5 bg-white space-y-4">
+                        <div class="font-mono text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center justify-between">
+                            <span>TEST AUTOMATION</span>
+                            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                        <div class="space-y-2 text-xs font-mono">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Playwright (Node.js)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Selenium WebDriver</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Robot Framework</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Cypress</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Manual Testing & UAT</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Test Case & Suite Design</div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: API, Load & Security -->
+                    <div class="border border-slate-200 rounded-lg p-5 bg-white space-y-4">
+                        <div class="font-mono text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center justify-between">
+                            <span>API & PERFORMANCE</span>
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div class="space-y-2 text-xs font-mono">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Postman (REST Validation)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Apache JMeter (Load Testing)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">k6 Load Testing</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Bearer Token Auth Injections</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">ISO:27001 Security Standard</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Security Awareness Protocols</div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: CI/CD & Management -->
+                    <div class="border border-slate-200 rounded-lg p-5 bg-white space-y-4">
+                        <div class="font-mono text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center justify-between">
+                            <span>CI/CD & WORKFLOW</span>
+                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        </div>
+                        <div class="space-y-2 text-xs font-mono">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Jenkins CI/CD Pipelines</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">JIRA & TestRail Management</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">Git / GitHub / GitLab</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">n8n Workflow Automation</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Trello Board Management</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Agile / Scrum Methodologies</div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Web Engineering & Code -->
+                    <div class="border border-slate-200 rounded-lg p-5 bg-white space-y-4">
+                        <div class="font-mono text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center justify-between">
+                            <span>WEB ENGINEERING</span>
+                            <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div class="space-y-2 text-xs font-mono">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">JavaScript (ES6+)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">HTML5 / CSS3 / Tailwind CSS</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">PHP / Laravel / CodeIgniter</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-800 font-semibold">MySQL / SQL Queries</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">Bootstrap Framework</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200 text-slate-600">ColdFusion Markup (CFML)</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. EDUCATION & CORPORATE TRAINING LOG -->
+        <section id="training" class="py-16 md:py-24 border-b border-slate-200 bg-slate-50/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left: Academic Background -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <div class="font-mono text-xs font-semibold text-blue-600 tracking-wider uppercase mb-1">04. ACADEMIC DEGREES & CERTIFICATIONS</div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Formal Education</h2>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 space-y-3">
+                            <div class="flex items-center justify-between font-mono text-xs text-slate-400">
+                                <span>BINA SARANA INFORMATIKA UNIVERSITY</span>
+                                <span>MAY 2015 — NOV 2018</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Associate of Information System</h3>
+                            <p class="text-sm text-slate-600">Tangerang, Indonesia</p>
+                            <div class="inline-flex items-center px-3 py-1 rounded bg-emerald-50 text-emerald-700 font-mono text-xs font-bold border border-emerald-200">
+                                GPA: 3.35 / 4.00
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 space-y-3">
+                            <div class="font-mono text-xs font-bold text-slate-900 uppercase">LANGUAGES & SPOKEN PROFICIENCY</div>
+                            <div class="space-y-2 text-sm text-slate-600">
+                                <div class="flex justify-between items-center">
+                                    <span>Bahasa Indonesia</span>
+                                    <span class="font-mono text-xs font-bold text-slate-900">Native / Primary</span>
+                                </div>
+                                <div class="flex justify-between items-center border-t border-slate-100 pt-2">
+                                    <span>English</span>
+                                    <span class="font-mono text-xs font-bold text-blue-600">Intermediate Professional</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Structured Training Log Grid -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div>
+                            <div class="font-mono text-xs font-semibold text-blue-600 tracking-wider uppercase mb-1">CORPORATE TRAINING LOG</div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Verified Technical Modules</h2>
+                        </div>
+
+                        <div class="overflow-x-auto border border-slate-200 rounded-lg bg-white shadow-sm">
+                            <table class="w-full text-left font-mono text-xs">
+                                <thead class="bg-slate-900 text-white uppercase tracking-wider text-[10px]">
+                                    <tr>
+                                        <th class="px-4 py-3">Training Module</th>
+                                        <th class="px-4 py-3">Issuing Organization</th>
+                                        <th class="px-4 py-3">Date Completed</th>
+                                        <th class="px-4 py-3">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="px-4 py-3 font-bold text-slate-900">Security Awareness</td>
+                                        <td class="px-4 py-3">PT. Indodev Niaga Internet</td>
+                                        <td class="px-4 py-3 text-slate-500">Jul 2024</td>
+                                        <td class="px-4 py-3"><span class="text-emerald-600 font-semibold">VERIFIED</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="px-4 py-3 font-bold text-slate-900">Awareness Training ISO:27001</td>
+                                        <td class="px-4 py-3">PT. Indodev Niaga Internet</td>
+                                        <td class="px-4 py-3 text-slate-500">Jul 2023</td>
+                                        <td class="px-4 py-3"><span class="text-emerald-600 font-semibold">VERIFIED</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="px-4 py-3 font-bold text-slate-900">HTML & JavaScript Core</td>
+                                        <td class="px-4 py-3">PT. Indodev Niaga Internet</td>
+                                        <td class="px-4 py-3 text-slate-500">Aug 2022</td>
+                                        <td class="px-4 py-3"><span class="text-emerald-600 font-semibold">VERIFIED</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="px-4 py-3 font-bold text-slate-900">Database & SQL Querying</td>
+                                        <td class="px-4 py-3">PT. Indodev Niaga Internet</td>
+                                        <td class="px-4 py-3 text-slate-500">Aug 2022</td>
+                                        <td class="px-4 py-3"><span class="text-emerald-600 font-semibold">VERIFIED</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="px-4 py-3 font-bold text-slate-900">ColdFusion Markup Language (CFML)</td>
+                                        <td class="px-4 py-3">PT. Indodev Niaga Internet</td>
+                                        <td class="px-4 py-3 text-slate-500">Aug 2022</td>
+                                        <td class="px-4 py-3"><span class="text-emerald-600 font-semibold">VERIFIED</span></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="px-4 py-3 font-bold text-slate-900">Implementation Methodology</td>
+                                        <td class="px-4 py-3">PT. Indodev Niaga Internet</td>
+                                        <td class="px-4 py-3 text-slate-500">Aug 2022</td>
+                                        <td class="px-4 py-3"><span class="text-emerald-600 font-semibold">VERIFIED</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 7. DIRECT CONTACT & RECRUITER FOOTER -->
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-slate-900 text-white rounded-2xl p-8 sm:p-12 md:p-16 border border-slate-800 shadow-2xl relative overflow-hidden">
+                    
+                    <div class="relative z-10 max-w-3xl space-y-6">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded bg-slate-800 text-emerald-400 font-mono text-xs">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>OPEN FOR NEW QA / SDET OPPORTUNITIES</span>
+                        </div>
+
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                            Ready to strengthen your enterprise test automation & delivery speed?
+                        </h2>
+
+                        <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+                            Currently available for Technical Quality Assurance, SDET, or Test Automation Specialist roles across Jakarta Metro area or remote teams. Let's discuss how I can bring test coverage, AI crawler efficiency, and CI/CD stability to your product stack.
+                        </p>
+
+                        <!-- Contact Action Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 font-mono text-xs">
+                            
+                            <!-- Email Trigger -->
+                            <button onclick="copyToClipboard('agilkrisna01@gmail.com', 'Copied: agilkrisna01@gmail.com')" class="p-4 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-left transition-all flex items-center justify-between group">
+                                <div>
+                                    <div class="text-slate-400 text-[10px] uppercase">DIRECT EMAIL</div>
+                                    <div class="text-white font-bold mt-1 group-hover:text-emerald-400 transition-colors">agilkrisna01@gmail.com</div>
+                                </div>
+                                <svg class="w-5 h-5 text-slate-500 group-hover:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            </button>
+
+                            <!-- Phone / WhatsApp Trigger -->
+                            <a href="https://wa.me/6285156350536" target="_blank" rel="noopener" class="p-4 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-left transition-all flex items-center justify-between group">
+                                <div>
+                                    <div class="text-slate-400 text-[10px] uppercase">PHONE / WHATSAPP</div>
+                                    <div class="text-white font-bold mt-1 group-hover:text-emerald-400 transition-colors">+62 851 5635 0536</div>
+                                </div>
+                                <svg class="w-5 h-5 text-slate-500 group-hover:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+
+                        </div>
+
+                        <!-- Footer Links -->
+                        <div class="flex flex-wrap items-center justify-between pt-8 border-t border-slate-800 text-xs font-mono text-slate-400">
+                            <div>© 2026 Agil Krisna Tripujianto. Built for precision quality engineering.</div>
+                            <div class="flex space-x-6 mt-4 sm:mt-0">
+                                <a href="https://www.linkedin.com/in/agilkrisnatripujianto" target="_blank" class="hover:text-white transition-colors">LinkedIn Profile</a>
+                                <a href="mailto:agilkrisna01@gmail.com" class="hover:text-white transition-colors">Direct Email</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ARCHITECTURE MODALS FOR DEEP-DIVE INSPECTION -->
+    
+    <!-- Modal Project 1 -->
+    <div id="modal-p1" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex justify-between items-start border-b border-slate-200 pb-4">
+                <div>
+                    <span class="font-mono text-xs font-bold text-blue-600">ARCHITECTURAL INSPECTION</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1">AI-Driven Autonomous Web Crawler & Playwright Generator</h3>
+                </div>
+                <button onclick="closeModal('modal-p1')" class="text-slate-400 hover:text-slate-700 p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600">
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">1. Problem Statement</h4>
+                <p>
+                    Testing multi-country enterprise HRIS modules (Singapore, Thailand, Vietnam) required repetitive UI login steps and manual selector writing across hundreds of dynamic DOM forms.
+                </p>
+
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">2. Technical Solution & Architecture</h4>
+                <div class="bg-slate-900 text-slate-200 p-4 rounded font-mono text-xs space-y-2 border border-slate-800">
+                    <div class="text-emerald-400">[Client Browser] -&gt; [Local Express Dashboard]</div>
+                    <div class="pl-4 text-slate-400">├── DOM Tree Parser -&gt; Send Cleaned DOM to Gemini API</div>
+                    <div class="pl-4 text-slate-400">├── LLM Agent -&gt; Generates robust Playwright locator scripts</div>
+                    <div class="pl-4 text-slate-400">└── Auth Service -&gt; Inject bearer token (bypasses UI login step)</div>
+                </div>
+
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">3. Results & Business Impact</h4>
+                <ul class="list-disc list-inside space-y-1 font-mono text-xs text-slate-700">
+                    <li>Accelerated new E2E test script creation by 70%.</li>
+                    <li>Eliminated flaky login UI dependencies across test suites.</li>
+                    <li>Streamlined automated regression checks for international tax/leave calculations.</li>
+                </ul>
+            </div>
+
+            <div class="border-t border-slate-200 pt-4 flex justify-end">
+                <button onclick="closeModal('modal-p1')" class="px-4 py-2 bg-slate-900 text-white font-mono text-xs rounded hover:bg-slate-800">Close Drawer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 2 -->
+    <div id="modal-p2" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex justify-between items-start border-b border-slate-200 pb-4">
+                <div>
+                    <span class="font-mono text-xs font-bold text-emerald-600">ARCHITECTURAL INSPECTION</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1">Enterprise CI/CD Regression & JMeter / k6 Performance Suite</h3>
+                </div>
+                <button onclick="closeModal('modal-p2')" class="text-slate-400 hover:text-slate-700 p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600">
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">1. Problem Statement</h4>
+                <p>
+                    Deploying frequent updates for enterprise clients in banking and BUMN created a high risk of regression bugs escaping to production under high concurrent user load.
+                </p>
+
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">2. Technical Solution</h4>
+                <p>
+                    Constructed a unified test pipeline combining Selenium, Robot Framework, and Cypress scripts running automatically on Jenkins build triggers, accompanied by JMeter and k6 load tests for bottleneck discovery.
+                </p>
+
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">3. Measured Outcomes</h4>
+                <ul class="list-disc list-inside space-y-1 font-mono text-xs text-slate-700">
+                    <li>Reduced post-release production defects by &gt;30%.</li>
+                    <li>Ensured API SLA compliance (&lt;200ms) under simulated load spikes.</li>
+                </ul>
+            </div>
+
+            <div class="border-t border-slate-200 pt-4 flex justify-end">
+                <button onclick="closeModal('modal-p2')" class="px-4 py-2 bg-slate-900 text-white font-mono text-xs rounded hover:bg-slate-800">Close Drawer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 3 -->
+    <div id="modal-p3" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex justify-between items-start border-b border-slate-200 pb-4">
+                <div>
+                    <span class="font-mono text-xs font-bold text-purple-600">ARCHITECTURAL INSPECTION</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1">n8n + Playwright Telemetry Pipeline</h3>
+                </div>
+                <button onclick="closeModal('modal-p3')" class="text-slate-400 hover:text-slate-700 p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600">
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">1. Architectural Workflow</h4>
+                <p>
+                    n8n schedules nightly Playwright executions. Test logs are parsed via Node JS transform nodes and written straight to Google Sheets REST APIs for instant manager visibility.
+                </p>
+            </div>
+
+            <div class="border-t border-slate-200 pt-4 flex justify-end">
+                <button onclick="closeModal('modal-p3')" class="px-4 py-2 bg-slate-900 text-white font-mono text-xs rounded hover:bg-slate-800">Close Drawer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project 4 -->
+    <div id="modal-p4" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex justify-between items-start border-b border-slate-200 pb-4">
+                <div>
+                    <span class="font-mono text-xs font-bold text-amber-600">ARCHITECTURAL INSPECTION</span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1">Customer Complaint & QA Ticketing System</h3>
+                </div>
+                <button onclick="closeModal('modal-p4')" class="text-slate-400 hover:text-slate-700 p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600">
+                <h4 class="font-mono text-xs font-bold text-slate-900 uppercase">1. System Design</h4>
+                <p>
+                    Full-stack web application built at Lintasarta to bridge the gap between customer service ticket intake and QA engineering defect tracking. Built using HTML5, CSS3, JavaScript, Bootstrap, PHP backend logic, and MySQL database.
+                </p>
+            </div>
+
+            <div class="border-t border-slate-200 pt-4 flex justify-end">
+                <button onclick="closeModal('modal-p4')" class="px-4 py-2 bg-slate-900 text-white font-mono text-xs rounded hover:bg-slate-800">Close Drawer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS -->
+    <script>
+        // 1. Terminal Tab Switching Logic
+        function switchTerminalTab(tabId) {
+            // Hide all tab content
+            document.querySelectorAll('.term-content').forEach(el => el.classList.add('hidden'));
+            
+            // Deactivate all tab buttons
+            document.querySelectorAll('.term-tab').forEach(btn => {
+                btn.classList.remove('text-white', 'border-emerald-500', 'bg-slate-800/50');
+                btn.classList.add('text-slate-400', 'border-transparent');
+            });
+
+            // Show target content
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Activate active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-400', 'border-transparent');
+                activeBtn.classList.add('text-white', 'border-emerald-500', 'bg-slate-800/50');
+            }
+        }
+
+        // 2. Terminal Re-run Animation Simulation
+        function triggerTerminalAnimation() {
+            const activeTab = document.querySelector('.term-content:not(.hidden)');
+            if (!activeTab) return;
+            
+            activeTab.classList.add('opacity-30');
+            setTimeout(() => {
+                activeTab.classList.remove('opacity-30');
+                showToast('Telemetry suite re-executed successfully!');
+            }, 400);
+        }
+
+        // 3. Project Filter Buttons
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.proj-filter');
+
+            // Update button styles
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.className = 'proj-filter px-3 py-1.5 rounded border border-slate-900 bg-slate-900 text-white font-medium';
+                } else {
+                    btn.className = 'proj-filter px-3 py-1.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700';
+                }
+            });
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // 4. Copy Email & Toast Trigger
+        function copyToClipboard(text, customMessage) {
+            // Fallback execCommand for iframe security compliance
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast(customMessage || 'Email address copied to clipboard');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // 5. Modal Controllers
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden'));
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
