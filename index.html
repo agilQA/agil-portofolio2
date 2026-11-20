@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agil Krisna Tripujianto — Technical Quality Assurance Portfolio</title>
+  <meta name="description" content="Technical Quality Assurance Staff specializing in Playwright, Selenium, Cypress, Robot Framework, Postman, JMeter, k6, and AI-driven test automation." />
+  <meta property="og:title" content="Agil Krisna Tripujianto — Technical Quality Assurance Portfolio" />
+  <meta property="og:description" content="Interactive QA Engineering Control Plane: Playwright Automation, AI DOM Crawling, CI/CD Quality Gates, and Enterprise Performance Testing." />
+  <meta property="og:url" content="https://agil-portofolio-nine.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            ink: '#0F172A',
+            muted: '#475569',
+            subtle: '#94A3B8',
+            surface: '#F8FAFC',
+            line: '#E2E8F0',
+            accent: '#0F766E',
+            accentSoft: '#F0FDFA',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      background-color: #FFFFFF;
+      color: #0F172A;
+    }
+
+    /* Playwright DOM Inspector Overlay Mode */
+    body.inspect-active [data-qa-id] {
+      outline: 1.5px dashed #0F766E;
+      outline-offset: 2px;
+      position: relative;
+      cursor: crosshair;
+    }
+    body.inspect-active [data-qa-id]:hover {
+      outline: 2px solid #0F766E;
+      background-color: rgba(15, 118, 110, 0.04);
+    }
+    body.inspect-active [data-qa-id]::after {
+      content: attr(data-qa-id) " · " attr(data-qa-ms);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      z-index: 60;
+      background: #0F172A;
+      color: #5EEAD4;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      line-height: 1.2;
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+    }
+
+    .hairline-grid {
+      background-image: linear-gradient(to right, rgba(226, 232, 240, 0.45) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(226, 232, 240, 0.45) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Custom Range Slider for Before/After Comparison */
+    input[type=range].qa-slider {
+      -webkit-appearance: none;
+      background: transparent;
+    }
+    input[type=range].qa-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 22px;
+      width: 22px;
+      border-radius: 9999px;
+      background: #0F172A;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.35);
+      cursor: ew-resize;
+      margin-top: -9px;
+    }
+    input[type=range].qa-slider::-webkit-slider-runnable-track {
+      height: 4px;
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-white text-ink antialiased selection:bg-teal-100 selection:text-teal-900">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-in-out pointer-events-none">
+    <div class="bg-ink text-white font-mono text-xs px-4 py-3 rounded-lg shadow-xl border border-slate-700 flex items-center space-x-3">
+      <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+      <span id="toast-message">Copied to clipboard</span>
+    </div>
+  </div>
+
+  <!-- Top Utility & Editorial Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0" data-qa-id="nav:brand-identity" data-qa-ms="3ms">
+        <span class="font-mono text-xs px-2 py-0.5 rounded bg-surface border border-line text-ink font-medium">QA // 01</span>
+        <a href="#top" class="font-semibold text-sm sm:text-base tracking-tight text-ink truncate">
+          Agil Krisna Tripujianto
+        </a>
+        <span class="hidden md:inline-block text-xs font-mono text-muted border-l border-line pl-3">
+          Technical QA Staff
+        </span>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm text-muted">
+        <a href="#sandbox" class="hover:text-ink transition">01. Sandbox</a>
+        <a href="#engineering-lab" class="hover:text-ink transition">02. QA Lab</a>
+        <a href="#cases" class="hover:text-ink transition">03. Case Studies</a>
+        <a href="#matrix" class="hover:text-ink transition">04. Test Matrix</a>
+        <a href="#experience" class="hover:text-ink transition">05. Experience</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Command Palette Button -->
+        <button
+          onclick="openCmdPalette()"
+          data-qa-id="btn:command-palette"
+          data-qa-ms="2ms"
+          class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs font-mono bg-surface hover:bg-slate-100 text-muted border border-line rounded-md transition"
+          title="Open Command Palette (Ctrl+K)"
+        >
+          <span>Search / Jump</span>
+          <kbd class="px-1.5 py-0.5 text-[10px] bg-white border border-line rounded text-ink">Ctrl K</kbd>
+        </button>
+
+        <!-- Playwright DOM Inspector Toggle -->
+        <button
+          id="inspectorToggleBtn"
+          onclick="toggleInspector()"
+          data-qa-id="btn:dom-inspector"
+          data-qa-ms="5ms"
+          class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono border border-line rounded-md bg-white hover:bg-surface text-ink transition"
+        >
+          <span id="inspectorDot" class="w-2 h-2 rounded-full bg-slate-300"></span>
+          <span>Inspect DOM</span>
+        </button>
+
+        <button
+          onclick="openContactModal()"
+          data-qa-id="btn:contact-trigger"
+          data-qa-ms="3ms"
+          class="px-3.5 py-1.5 text-xs sm:text-sm font-medium bg-ink text-white hover:bg-slate-800 rounded-md transition"
+        >
+          Contact
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 00. SWISS EDITORIAL HERO -->
+    <section class="border-b border-line hairline-grid">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+          <div class="lg:col-span-8 space-y-6" data-qa-id="hero:editorial-thesis" data-qa-ms="7ms">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accentSoft border border-teal-200 text-accent font-mono text-xs">
+              <span>PT. Indodev Niaga Internet</span>
+              <span>·</span>
+              <span>Enterprise, BUMN &amp; Finance QA</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-ink leading-[1.08]">
+              Quality engineering grounded in <span class="italic text-accent">test architecture</span>, automation, and real system context.
+            </h1>
+
+            <p class="text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+              I am <strong class="text-ink font-semibold">Agil Krisna Tripujianto</strong>, a Technical Quality Assurance Staff in the Jakarta Metropolitan Area with roots in web development. I design functional, API, performance, and automated test suites across large-scale enterprise platforms—reducing post-release defects by over <strong class="text-ink font-semibold">30%</strong>.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="#cases" class="px-4 py-2.5 text-sm font-medium bg-ink text-white hover:bg-slate-800 rounded-md transition">
+                Explore Case Studies
+              </a>
+              <button onclick="openCmdPalette()" class="px-4 py-2.5 text-sm font-medium bg-white text-ink hover:bg-surface border border-line rounded-md transition">
+                Command Palette (Ctrl+K)
+              </button>
+              <a href="https://www.linkedin.com/in/agilkrisnatripujianto" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 text-sm font-mono text-muted hover:text-ink transition">
+                LinkedIn ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- Architectural Spec Card -->
+          <div class="lg:col-span-4 bg-white border border-line rounded-xl p-5 shadow-xs space-y-4" data-qa-id="hero:profile-spec" data-qa-ms="4ms">
+            <div class="flex items-center justify-between border-b border-line pb-3">
+              <span class="font-mono text-xs uppercase tracking-wider text-muted">Dossier Snapshot</span>
+              <span class="font-mono text-xs text-accent font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-teal-600 animate-ping"></span>
+                ACTIVE
+              </span>
+            </div>
+            <dl class="space-y-2.5 text-sm">
+              <div class="flex justify-between gap-4">
+                <dt class="text-muted">Role</dt>
+                <dd class="font-medium text-ink text-right">Technical QA Staff</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-muted">Automation</dt>
+                <dd class="font-mono text-xs text-ink text-right">Playwright · Selenium · Cypress · Robot</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-muted">API &amp; Load</dt>
+                <dd class="font-mono text-xs text-ink text-right">Postman · JMeter · k6</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-muted">CI/CD &amp; Ops</dt>
+                <dd class="font-mono text-xs text-ink text-right">Jenkins · n8n · JIRA · TestRail</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-muted">Dev Roots</dt>
+                <dd class="font-mono text-xs text-ink text-right">PHP · Laravel · JS · MySQL</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-muted">Location</dt>
+                <dd class="text-ink text-right">Jakarta Metropolitan Area</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01. BENTO EXECUTION SANDBOX & BEFORE/AFTER SLIDER -->
+    <section id="sandbox" class="py-16 lg:py-24 border-b border-line">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">01 // Execution Sandbox &amp; Impact</div>
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink">Interactive QA Telemetry &amp; Regression Impact</h2>
+          </div>
+          <p class="text-sm text-muted max-w-md">
+            Trigger a simulated CI/CD pipeline run or drag the comparison slider to inspect the measurable impact of test automation.
+          </p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Bento Box A: Interactive CI/CD Pipeline Visualizer -->
+          <div class="lg:col-span-7 bg-surface border border-line rounded-xl p-6 flex flex-col justify-between space-y-6" data-qa-id="sandbox:cicd-pipeline" data-qa-ms="12ms">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
+              <div>
+                <h3 class="font-semibold text-base text-ink">CI/CD Quality Gate Visualizer</h3>
+                <p class="text-xs text-muted font-mono mt-0.5">Jenkins Trigger → Playwright E2E → Postman API → k6 Load → Report</p>
+              </div>
+              <button id="runPipelineBtn" onclick="runPipelineSimulation()" class="px-3.5 py-2 text-xs font-mono font-medium bg-ink text-white hover:bg-slate-800 rounded-md transition flex items-center gap-2">
+                <span>▶ Run Quality Gate</span>
+              </button>
+            </div>
+
+            <!-- Pipeline Stages -->
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3" id="pipelineStages">
+              <div class="stage-card bg-white border border-line rounded-lg p-3.5 space-y-2 transition-all" data-stage="0">
+                <div class="flex items-center justify-between font-mono text-[11px]">
+                  <span class="text-muted">STAGE 01</span>
+                  <span class="stage-badge px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">PASS</span>
+                </div>
+                <div class="font-semibold text-sm text-ink">Jenkins Build</div>
+                <div class="font-mono text-[11px] text-muted">Auth Token Injected</div>
+              </div>
+
+              <div class="stage-card bg-white border border-line rounded-lg p-3.5 space-y-2 transition-all" data-stage="1">
+                <div class="flex items-center justify-between font-mono text-[11px]">
+                  <span class="text-muted">STAGE 02</span>
+                  <span class="stage-badge px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">PASS</span>
+                </div>
+                <div class="font-semibold text-sm text-ink">Playwright E2E</div>
+                <div class="font-mono text-[11px] text-muted">50 Leave Scenarios</div>
+              </div>
+
+              <div class="stage-card bg-white border border-line rounded-lg p-3.5 space-y-2 transition-all" data-stage="2">
+                <div class="flex items-center justify-between font-mono text-[11px]">
+                  <span class="text-muted">STAGE 03</span>
+                  <span class="stage-badge px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">PASS</span>
+                </div>
+                <div class="font-semibold text-sm text-ink">Postman &amp; k6</div>
+                <div class="font-mono text-[11px] text-muted">p95 Latency: 118ms</div>
+              </div>
+
+              <div class="stage-card bg-white border border-line rounded-lg p-3.5 space-y-2 transition-all" data-stage="3">
+                <div class="flex items-center justify-between font-mono text-[11px]">
+                  <span class="text-muted">STAGE 04</span>
+                  <span class="stage-badge px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">SYNCED</span>
+                </div>
+                <div class="font-semibold text-sm text-ink">n8n + Sheets</div>
+                <div class="font-mono text-[11px] text-muted">Audit Log Published</div>
+              </div>
+            </div>
+
+            <!-- Live Execution Log -->
+            <div id="pipelineLog" class="bg-white border border-line rounded-lg p-3.5 font-mono text-xs text-muted space-y-1">
+              <div class="text-ink font-medium">[READY] Quality gate idle. All 50 combinatorial HRIS &amp; API checks verified.</div>
+              <div>Last run: 0.84s total execution · 0 post-release critical regressions.</div>
+            </div>
+          </div>
+
+          <!-- Bento Box B: Before vs After QA Comparison Slider -->
+          <div class="lg:col-span-5 bg-white border border-line rounded-xl p-6 flex flex-col justify-between space-y-6" data-qa-id="sandbox:before-after-slider" data-qa-ms="9ms">
+            <div class="border-b border-line pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold text-base text-ink">Before vs. After Automation</h3>
+                <span id="sliderPercentLabel" class="font-mono text-xs px-2 py-0.5 rounded bg-accentSoft text-accent font-medium">100% Automated</span>
+              </div>
+              <p class="text-xs text-muted mt-1">Slide to compare manual regression cycles vs. CI/CD automated suites.</p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-2 gap-3">
+                <div id="beforeCard" class="p-4 rounded-lg border border-line bg-surface transition-opacity duration-200 opacity-55">
+                  <div class="font-mono text-[10px] uppercase text-muted">Legacy Manual Cycle</div>
+                  <div class="text-2xl font-bold text-ink mt-1">~6.5 hrs</div>
+                  <p class="text-xs text-muted mt-1">Repetitive UI login &amp; manual spreadsheet tracking.</p>
+                </div>
+                <div id="afterCard" class="p-4 rounded-lg border border-teal-200 bg-accentSoft transition-opacity duration-200 opacity-100">
+                  <div class="font-mono text-[10px] uppercase text-accent">Automated Pipeline</div>
+                  <div class="text-2xl font-bold text-ink mt-1">18 mins</div>
+                  <p class="text-xs text-muted mt-1">&gt;30% fewer post-release defects with bearer token bypass.</p>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <input
+                  id="qaComparisonSlider"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+                  oninput="updateComparisonSlider(this.value)"
+                  class="w-full qa-slider"
+                  aria-label="Compare manual versus automated QA workflow"
+                />
+                <div class="flex justify-between font-mono text-[11px] text-muted mt-2">
+                  <span>← Manual Baseline</span>
+                  <span>Optimized QA Suite →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-line flex items-center justify-between text-xs font-mono">
+              <span class="text-muted">Measured Defect Reduction</span>
+              <span class="text-accent font-semibold">&gt;30% Post-Release</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. INTERACTIVE QA ENGINEERING LAB (AI CRAWLER + API SANDBOX + ROI CALCULATOR) -->
+    <section id="engineering-lab" class="py-16 lg:py-24 border-b border-line bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">02 // Interactive Proof-of-Work Console</div>
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink">Live QA Engineering Lab</h2>
+          </div>
+          <p class="text-sm text-muted max-w-md">
+            Interact directly with simulated QA tooling: run the AI DOM-to-Playwright generator, test API auth-bypass payloads, or model regression ROI.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Lab Module 1: AI DOM Crawler & Playwright Generator Simulator -->
+          <div class="lg:col-span-6 bg-surface border border-line rounded-xl p-6 flex flex-col justify-between space-y-5" data-qa-id="lab:ai-playwright-sim" data-qa-ms="15ms">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">MODULE A · SUNFISH HRIS WORKFLOW</span>
+                <h3 class="font-semibold text-base text-ink mt-0.5">AI DOM Crawler → Playwright Spec</h3>
+              </div>
+              <select id="crawlerModuleSelect" onchange="updateCrawlerPreview()" class="font-mono text-xs bg-white border border-line rounded-md px-2.5 py-1.5 text-ink focus:outline-none focus:border-teal-600">
+                <option value="leave">Leave Setting (SG/TH/VN)</option>
+                <option value="auth">Bearer Token Bypass</option>
+                <option value="attendance">Attendance Approval</option>
+              </select>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-muted">Target Staging Endpoint:</span>
+                <span id="crawlerTargetUrl" class="text-ink bg-white px-2 py-0.5 rounded border border-line">/hris/time/leave-setting</span>
+              </div>
+              <pre id="crawlerCodeOutput" class="bg-white border border-line rounded-lg p-4 font-mono text-xs text-ink overflow-x-auto leading-relaxed max-h-56"></pre>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-line">
+              <span id="crawlerStatusText" class="font-mono text-xs text-muted">Ready to crawl DOM nodes</span>
+              <button onclick="simulateCrawlerRun()" class="px-3.5 py-2 text-xs font-mono font-medium bg-ink text-white hover:bg-slate-800 rounded-md transition">
+                ⚡ Generate &amp; Verify Spec
+              </button>
+            </div>
+          </div>
+
+          <!-- Lab Module 2: REST API & Auth-Bypass Contract Tester -->
+          <div class="lg:col-span-6 bg-surface border border-line rounded-xl p-6 flex flex-col justify-between space-y-5" data-qa-id="lab:api-contract-tester" data-qa-ms="11ms">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">MODULE B · POSTMAN / REST CONTRACT</span>
+                <h3 class="font-semibold text-base text-ink mt-0.5">API &amp; Token Assertion Sandbox</h3>
+              </div>
+              <div class="flex gap-1.5 font-mono text-xs">
+                <button onclick="runApiScenario('valid')" data-scenario="valid" class="api-scenario-btn px-2.5 py-1 rounded bg-ink text-white transition">200 OK</button>
+                <button onclick="runApiScenario('expired')" data-scenario="expired" class="api-scenario-btn px-2.5 py-1 rounded bg-white border border-line text-muted hover:text-ink transition">401 Expired</button>
+                <button onclick="runApiScenario('invalid')" data-scenario="invalid" class="api-scenario-btn px-2.5 py-1 rounded bg-white border border-line text-muted hover:text-ink transition">422 Schema</button>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-center justify-between font-mono text-xs bg-white border border-line rounded-md px-3 py-2">
+                <span><strong class="text-accent">POST</strong> /api/v2/hris/leave/validate</span>
+                <span id="apiLatencyBadge" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">200 OK · 84ms</span>
+              </div>
+              <pre id="apiResponseOutput" class="bg-white border border-line rounded-lg p-4 font-mono text-xs text-ink overflow-x-auto leading-relaxed max-h-56"></pre>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-line font-mono text-xs">
+              <span class="text-muted">Assertions: Schema + Status + SLA (&lt;200ms)</span>
+              <span id="apiAssertionResult" class="text-emerald-700 font-semibold">3/3 PASSED</span>
+            </div>
+          </div>
+
+          <!-- Lab Module 3: Regression & Defect Escape ROI Modeler -->
+          <div class="lg:col-span-12 bg-white border border-line rounded-xl p-6 space-y-5" data-qa-id="lab:roi-calculator" data-qa-ms="8ms">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-line pb-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">MODULE C · QUALITY ENGINEERING IMPACT MODEL</span>
+                <h3 class="font-semibold text-base text-ink mt-0.5">Regression Automation &amp; Defect Escape Estimator</h3>
+              </div>
+              <span class="font-mono text-xs text-muted">Calibrated to &gt;30% post-release defect reduction benchmark</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-6 space-y-4">
+                <div>
+                  <div class="flex justify-between font-mono text-xs mb-1.5">
+                    <span class="text-muted">Regression Suite Size (Test Cases)</span>
+                    <span id="roiCasesVal" class="font-semibold text-ink">150 cases</span>
+                  </div>
+                  <input id="roiCasesInput" type="range" min="50" max="500" step="10" value="150" oninput="calculateQaRoi()" class="w-full qa-slider" />
+                </div>
+                <div>
+                  <div class="flex justify-between font-mono text-xs mb-1.5">
+                    <span class="text-muted">Releases per Month</span>
+                    <span id="roiReleasesVal" class="font-semibold text-ink">4 releases / mo</span>
+                  </div>
+                  <input id="roiReleasesInput" type="range" min="1" max="12" step="1" value="4" oninput="calculateQaRoi()" class="w-full qa-slider" />
+                </div>
+              </div>
+
+              <div class="md:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="p-4 rounded-lg bg-surface border border-line">
+                  <div class="font-mono text-[10px] uppercase text-muted">Hours Saved / Mo</div>
+                  <div id="roiHoursSaved" class="text-2xl font-bold text-ink mt-1">36.0 hrs</div>
+                  <div class="text-[11px] text-muted mt-0.5">vs. manual execution</div>
+                </div>
+                <div class="p-4 rounded-lg bg-accentSoft border border-teal-200">
+                  <div class="font-mono text-[10px] uppercase text-accent">Defect Escape Drop</div>
+                  <div id="roiDefectDrop" class="text-2xl font-bold text-ink mt-1">-32%</div>
+                  <div class="text-[11px] text-muted mt-0.5">CI/CD early catch</div>
+                </div>
+                <div class="p-4 rounded-lg bg-surface border border-line">
+                  <div class="font-mono text-[10px] uppercase text-muted">Cycle Speedup</div>
+                  <div id="roiSpeedup" class="text-2xl font-bold text-ink mt-1">14.2x</div>
+                  <div class="text-[11px] text-muted mt-0.5">Parallel Playwright</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. ARCHITECTURAL CASE STUDIES -->
+    <section id="cases" class="py-16 lg:py-24 border-b border-line bg-surface/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">03 // Architectural Case Studies</div>
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink">Selected QA &amp; Engineering Systems</h2>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="flex flex-wrap gap-2 font-mono text-xs">
+            <button onclick="filterCases('all')" class="case-filter px-3 py-1.5 rounded-md bg-ink text-white border border-ink" data-filter="all">All (5)</button>
+            <button onclick="filterCases('ai')" class="case-filter px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink" data-filter="ai">AI &amp; Playwright</button>
+            <button onclick="filterCases('enterprise')" class="case-filter px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink" data-filter="enterprise">Enterprise &amp; CI/CD</button>
+            <button onclick="filterCases('dev')" class="case-filter px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink" data-filter="dev">Web Dev</button>
+          </div>
+        </div>
+
+        <!-- Case Studies List -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Case 01 -->
+          <article class="case-card bg-white border border-line rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition" data-category="ai" data-qa-id="case:ai-crawler" data-qa-ms="11ms">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="px-2.5 py-1 rounded bg-accentSoft text-accent border border-teal-200">CASE 01 · AI &amp; PLAYWRIGHT</span>
+                <span class="text-muted">SunFish HRIS</span>
+              </div>
+              <h3 class="text-xl font-semibold text-ink">AI-Driven Autonomous Web Crawler &amp; Playwright Generator</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Built a 4-stage local automation workspace (Express + Tailwind dashboard) that crawls staging DOM structures, generates structured test cases and Playwright scripts via LLM, and injects session bearer tokens to bypass repetitive UI login flows.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Playwright</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">DOM Crawler</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Express.js</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Auth Bypass</span>
+              </div>
+            </div>
+            <div class="pt-5 mt-6 border-t border-line flex items-center justify-between">
+              <span class="font-mono text-xs text-accent font-medium">4-Stage E2E Generation</span>
+              <button onclick="openCaseDrawer(0)" class="font-mono text-xs font-semibold text-ink hover:text-accent transition">Inspect Blueprint →</button>
+            </div>
+          </article>
+
+          <!-- Case 02 -->
+          <article class="case-card bg-white border border-line rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition" data-category="enterprise" data-qa-id="case:leave-combinatorial" data-qa-ms="9ms">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="px-2.5 py-1 rounded bg-surface text-ink border border-line">CASE 02 · COMBINATORIAL QA</span>
+                <span class="text-muted">Multi-Country HRIS</span>
+              </div>
+              <h3 class="text-xl font-semibold text-ink">Multi-Country Leave Setting Combinatorial Suite</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Designed a 50-scenario positive combinatorial test matrix covering complex regional leave accrual, carry-forward, and statutory holiday policies across Thailand, Vietnam, and Singapore.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Combinatorial Design</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">SG · TH · VN Rules</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">TestRail</span>
+              </div>
+            </div>
+            <div class="pt-5 mt-6 border-t border-line flex items-center justify-between">
+              <span class="font-mono text-xs text-accent font-medium">50 Policy Permutations</span>
+              <button onclick="openCaseDrawer(1)" class="font-mono text-xs font-semibold text-ink hover:text-accent transition">Inspect Blueprint →</button>
+            </div>
+          </article>
+
+          <!-- Case 03 -->
+          <article class="case-card bg-white border border-line rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition" data-category="enterprise" data-qa-id="case:jenkins-jmeter" data-qa-ms="14ms">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="px-2.5 py-1 rounded bg-surface text-ink border border-line">CASE 03 · CI/CD &amp; LOAD</span>
+                <span class="text-muted">BUMN &amp; Banking Clients</span>
+              </div>
+              <h3 class="text-xl font-semibold text-ink">Enterprise CI/CD Regression &amp; JMeter / k6 Performance Gate</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Integrated Selenium WebDriver, Robot Framework, and Cypress regression suites into Jenkins CI/CD build cycles while executing Postman API checks and JMeter/k6 load testing for high-traffic enterprise systems.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Jenkins CI/CD</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Selenium &amp; Cypress</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">JMeter &amp; k6</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Postman</span>
+              </div>
+            </div>
+            <div class="pt-5 mt-6 border-t border-line flex items-center justify-between">
+              <span class="font-mono text-xs text-accent font-medium">&gt;30% Defect Reduction</span>
+              <button onclick="openCaseDrawer(2)" class="font-mono text-xs font-semibold text-ink hover:text-accent transition">Inspect Blueprint →</button>
+            </div>
+          </article>
+
+          <!-- Case 04 -->
+          <article class="case-card bg-white border border-line rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition" data-category="ai" data-qa-id="case:n8n-sheets" data-qa-ms="8ms">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="px-2.5 py-1 rounded bg-accentSoft text-accent border border-teal-200">CASE 04 · WORKFLOW OPS</span>
+                <span class="text-muted">n8n + Google Sheets</span>
+              </div>
+              <h3 class="text-xl font-semibold text-ink">n8n &amp; Google Sheets Automated Execution Loop</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Orchestrated local n8n workflows to execute Playwright scripts (`loginTest.js`), capture structured pass/fail telemetry, and sync real-time QA execution logs directly into Google Sheets.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">n8n Workflow</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Playwright CLI</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Google Sheets API</span>
+              </div>
+            </div>
+            <div class="pt-5 mt-6 border-t border-line flex items-center justify-between">
+              <span class="font-mono text-xs text-accent font-medium">Automated Test Logging</span>
+              <button onclick="openCaseDrawer(3)" class="font-mono text-xs font-semibold text-ink hover:text-accent transition">Inspect Blueprint →</button>
+            </div>
+          </article>
+
+          <!-- Case 05 -->
+          <article class="case-card md:col-span-2 bg-white border border-line rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition" data-category="dev" data-qa-id="case:lintasarta-portal" data-qa-ms="10ms">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="px-2.5 py-1 rounded bg-surface text-ink border border-line">CASE 05 · WEB ENGINEERING</span>
+                <span class="text-muted">PT. Aplikanusa Lintasarta</span>
+              </div>
+              <h3 class="text-xl font-semibold text-ink">Customer Complaint to QA Ticket Portal</h3>
+              <p class="text-sm text-muted leading-relaxed max-w-4xl">
+                Built a full-stack web application that converts incoming customer complaints directly into prioritized QA triage tickets—complete with status tracking, team assignment routing, and automated Email/WhatsApp notifications.
+              </p>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">HTML5 / CSS3 / JS</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Bootstrap</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">PHP / MySQL</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-line text-ink">Email &amp; WhatsApp Alerts</span>
+              </div>
+            </div>
+            <div class="pt-5 mt-6 border-t border-line flex items-center justify-between">
+              <span class="font-mono text-xs text-accent font-medium">End-to-End Triage Workflow</span>
+              <button onclick="openCaseDrawer(4)" class="font-mono text-xs font-semibold text-ink hover:text-accent transition">Inspect Blueprint →</button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. INTERACTIVE COMBINATORIAL TEST MATRIX EXPLORER -->
+    <section id="matrix" class="py-16 lg:py-24 border-b border-line">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">04 // Test Design Craft</div>
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink">Interactive Test Case Matrix Explorer</h2>
+          </div>
+
+          <div class="flex flex-wrap gap-2 font-mono text-xs">
+            <button onclick="filterMatrix('ALL')" class="matrix-btn px-3 py-1.5 rounded-md bg-ink text-white border border-ink" data-type="ALL">All Cases</button>
+            <button onclick="filterMatrix('POSITIVE')" class="matrix-btn px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink" data-type="POSITIVE">Positive</button>
+            <button onclick="filterMatrix('API')" class="matrix-btn px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink" data-type="API">API Contract</button>
+            <button onclick="filterMatrix('LOAD')" class="matrix-btn px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink" data-type="LOAD">Performance</button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto border border-line rounded-xl bg-white" data-qa-id="matrix:test-table" data-qa-ms="6ms">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-line bg-surface font-mono text-[11px] uppercase tracking-wider text-muted">
+                <th class="py-3.5 px-4">Test ID</th>
+                <th class="py-3.5 px-4">Module / Scope</th>
+                <th class="py-3.5 px-4">Scenario &amp; Assertion</th>
+                <th class="py-3.5 px-4">Runner</th>
+                <th class="py-3.5 px-4">Result</th>
+              </tr>
+            </thead>
+            <tbody id="matrixTableBody" class="divide-y divide-line text-sm">
+              <tr class="matrix-row hover:bg-surface/60" data-type="POSITIVE">
+                <td class="py-3.5 px-4 font-mono text-xs text-ink font-medium">TC-HRIS-SG-01</td>
+                <td class="py-3.5 px-4 text-ink">Leave Setting (Singapore)</td>
+                <td class="py-3.5 px-4 text-muted">Verify pro-rated annual leave accrual &amp; carry-forward cap rules</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-ink">Playwright</td>
+                <td class="py-3.5 px-4 font-mono text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">PASS</span></td>
+              </tr>
+              <tr class="matrix-row hover:bg-surface/60" data-type="POSITIVE">
+                <td class="py-3.5 px-4 font-mono text-xs text-ink font-medium">TC-HRIS-TH-14</td>
+                <td class="py-3.5 px-4 text-ink">Leave Setting (Thailand)</td>
+                <td class="py-3.5 px-4 text-muted">Validate statutory holiday overlap deduction during multi-day leave</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-ink">Playwright</td>
+                <td class="py-3.5 px-4 font-mono text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">PASS</span></td>
+              </tr>
+              <tr class="matrix-row hover:bg-surface/60" data-type="POSITIVE">
+                <td class="py-3.5 px-4 font-mono text-xs text-ink font-medium">TC-HRIS-VN-29</td>
+                <td class="py-3.5 px-4 text-ink">Leave Setting (Vietnam)</td>
+                <td class="py-3.5 px-4 text-muted">Assert seniority bonus leave increment after 5 years of service</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-ink">Robot Framework</td>
+                <td class="py-3.5 px-4 font-mono text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">PASS</span></td>
+              </tr>
+              <tr class="matrix-row hover:bg-surface/60" data-type="API">
+                <td class="py-3.5 px-4 font-mono text-xs text-ink font-medium">TC-API-AUTH-04</td>
+                <td class="py-3.5 px-4 text-ink">Session &amp; Token Auth</td>
+                <td class="py-3.5 px-4 text-muted">Inject bearer token into staging context &amp; validate HTTP 200 payload schema</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-ink">Postman / Playwright</td>
+                <td class="py-3.5 px-4 font-mono text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">PASS</span></td>
+              </tr>
+              <tr class="matrix-row hover:bg-surface/60" data-type="LOAD">
+                <td class="py-3.5 px-4 font-mono text-xs text-ink font-medium">TC-PERF-BUMN-02</td>
+                <td class="py-3.5 px-4 text-ink">Enterprise Peak Concurrency</td>
+                <td class="py-3.5 px-4 text-muted">Sustain concurrent submission spike with p95 response under 200ms SLA</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-ink">JMeter / k6</td>
+                <td class="py-3.5 px-4 font-mono text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">PASS</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. CAREER EXPERIENCE & EDUCATION -->
+    <section id="experience" class="py-16 lg:py-24 border-b border-line bg-surface/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left 8 Cols: Experience -->
+        <div class="lg:col-span-8 space-y-8">
+          <div>
+            <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">05 // Career Trajectory</div>
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink">Working Experience</h2>
+          </div>
+
+          <div class="space-y-8 border-l border-line pl-6 ml-2">
+            <!-- Role 1 -->
+            <div class="relative space-y-2.5" data-qa-id="exp:indodev" data-qa-ms="5ms">
+              <span class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-white"></span>
+              <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+                <span class="text-accent font-semibold">PT. Indodev Niaga Internet · Tangerang Selatan</span>
+                <span class="text-muted">Aug 2022 – Present</span>
+              </div>
+              <h3 class="text-lg font-semibold text-ink">Technical Quality Assurance Staff</h3>
+              <ul class="space-y-1.5 text-sm text-muted list-disc list-inside leading-relaxed">
+                <li>Analyzed business and technical requirements to design comprehensive test plans and test cases.</li>
+                <li>Performed manual testing (functional, regression, UAT) across web and mobile applications for BUMN, banking/finance, and enterprise clients.</li>
+                <li>Developed and maintained automated test scripts using <strong class="text-ink font-medium">Selenium WebDriver, Robot Framework, and Cypress</strong>.</li>
+                <li>Conducted API testing via <strong class="text-ink font-medium">Postman</strong> and performance/load testing via <strong class="text-ink font-medium">JMeter</strong>.</li>
+                <li>Integrated automated tests into <strong class="text-ink font-medium">Jenkins CI/CD</strong> pipelines and reduced post-release defects by over <strong class="text-ink font-medium">30%</strong>.</li>
+              </ul>
+            </div>
+
+            <!-- Role 2 -->
+            <div class="relative space-y-2.5" data-qa-id="exp:sicepat" data-qa-ms="4ms">
+              <span class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300 ring-4 ring-white"></span>
+              <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+                <span class="text-ink font-medium">PT. SiCepat Ekspres Indonesia · Jakarta</span>
+                <span class="text-muted">Feb 2022 – Jul 2022</span>
+              </div>
+              <h3 class="text-lg font-semibold text-ink">Junior Quality Assurance</h3>
+              <ul class="space-y-1.5 text-sm text-muted list-disc list-inside leading-relaxed">
+                <li>Executed manual functional, regression, and API integration testing for web and mobile logistics platforms.</li>
+                <li>Tracked and verified defects using JIRA and Trello in daily Agile (Scrum) ceremonies.</li>
+                <li>Assisted in writing and maintaining automated test scripts with Selenium, Robot Framework, and Cypress.</li>
+              </ul>
+            </div>
+
+            <!-- Role 3 -->
+            <div class="relative space-y-2.5" data-qa-id="exp:lintasarta" data-qa-ms="4ms">
+              <span class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300 ring-4 ring-white"></span>
+              <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+                <span class="text-ink font-medium">PT. Aplikanusa Lintasarta · Jakarta</span>
+                <span class="text-muted">Jul 2021 – Jan 2022</span>
+              </div>
+              <h3 class="text-lg font-semibold text-ink">Web Developer</h3>
+              <ul class="space-y-1.5 text-sm text-muted list-disc list-inside leading-relaxed">
+                <li>Built a custom web application to convert customer complaints into prioritized QA tickets.</li>
+                <li>Developed ticket submission, status tracking, team assignment modules, and Email/WhatsApp alert integrations using HTML, CSS, JavaScript, and Bootstrap.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 4 Cols: Education & Training -->
+        <div class="lg:col-span-4 space-y-8">
+          <div>
+            <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">Credentials</div>
+            <h2 class="font-serif text-3xl text-ink">Education &amp; Training</h2>
+          </div>
+
+          <div class="bg-white border border-line rounded-xl p-5 space-y-3" data-qa-id="edu:bsi" data-qa-ms="3ms">
+            <div class="font-mono text-xs text-muted">May 2015 – Nov 2018</div>
+            <h3 class="font-semibold text-base text-ink">Associate of Information System</h3>
+            <p class="text-sm text-muted">Bina Sarana Informatika University, Tangerang</p>
+            <div class="inline-block font-mono text-xs px-2.5 py-1 rounded bg-accentSoft text-accent font-medium">
+              GPA 3.35 / 4.00
+            </div>
+          </div>
+
+          <div class="bg-white border border-line rounded-xl p-5 space-y-3" data-qa-id="cert:training-log" data-qa-ms="4ms">
+            <div class="font-mono text-xs uppercase tracking-wider text-muted border-b border-line pb-2">Verified Training</div>
+            <ul class="space-y-2.5 text-xs">
+              <li class="flex justify-between gap-2">
+                <span class="font-medium text-ink">Security Awareness</span>
+                <span class="font-mono text-muted">Jul 2024</span>
+              </li>
+              <li class="flex justify-between gap-2">
+                <span class="font-medium text-ink">Awareness Training ISO:27001</span>
+                <span class="font-mono text-muted">Jul 2023</span>
+              </li>
+              <li class="flex justify-between gap-2">
+                <span class="font-medium text-ink">HTML &amp; JavaScript</span>
+                <span class="font-mono text-muted">Aug 2022</span>
+              </li>
+              <li class="flex justify-between gap-2">
+                <span class="font-medium text-ink">Database &amp; SQL</span>
+                <span class="font-mono text-muted">Aug 2022</span>
+              </li>
+              <li class="flex justify-between gap-2">
+                <span class="font-medium text-ink">ColdFusion Markup (CFML)</span>
+                <span class="font-mono text-muted">Aug 2022</span>
+              </li>
+              <li class="flex justify-between gap-2">
+                <span class="font-medium text-ink">Implementation Methodology</span>
+                <span class="font-mono text-muted">Aug 2022</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. TECHNICAL STACK -->
+    <section id="stack" class="py-16 lg:py-24 border-b border-line">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div>
+          <div class="font-mono text-xs text-accent uppercase tracking-wider mb-2">06 // Technical Capabilities</div>
+          <h2 class="font-serif text-3xl sm:text-4xl text-ink">Tools, Frameworks &amp; Engineering Stack</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="border border-line rounded-xl p-5 space-y-3">
+            <div class="font-mono text-xs font-semibold text-ink uppercase border-b border-line pb-2">Test Automation</div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs text-muted">
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Playwright</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Selenium WebDriver</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Robot Framework</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Cypress</span>
+              <span class="px-2.5 py-1 bg-surface rounded">Manual &amp; UAT</span>
+            </div>
+          </div>
+
+          <div class="border border-line rounded-xl p-5 space-y-3">
+            <div class="font-mono text-xs font-semibold text-ink uppercase border-b border-line pb-2">API &amp; Performance</div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs text-muted">
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Postman</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Apache JMeter</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">k6 Load Testing</span>
+              <span class="px-2.5 py-1 bg-surface rounded">REST Validation</span>
+            </div>
+          </div>
+
+          <div class="border border-line rounded-xl p-5 space-y-3">
+            <div class="font-mono text-xs font-semibold text-ink uppercase border-b border-line pb-2">CI/CD &amp; QA Ops</div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs text-muted">
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Jenkins</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">JIRA &amp; TestRail</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Git / GitLab / GitHub</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">n8n</span>
+              <span class="px-2.5 py-1 bg-surface rounded">Agile / Scrum</span>
+            </div>
+          </div>
+
+          <div class="border border-line rounded-xl p-5 space-y-3">
+            <div class="font-mono text-xs font-semibold text-ink uppercase border-b border-line pb-2">Web &amp; Database</div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-xs text-muted">
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">HTML5 / CSS3 / JS</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">Tailwind / Bootstrap</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">PHP / Laravel / CI</span>
+              <span class="px-2.5 py-1 bg-surface rounded text-ink">MySQL / SQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-12 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div class="space-y-1">
+        <div class="font-semibold text-ink">Agil Krisna Tripujianto</div>
+        <div class="text-xs font-mono text-muted">Technical Quality Assurance Staff · Jakarta Metropolitan Area</div>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+        <button onclick="copyText('agilkrisna01@gmail.com')" class="text-ink hover:text-accent underline underline-offset-4">agilkrisna01@gmail.com</button>
+        <button onclick="copyText('+62 851 5635 0536')" class="text-ink hover:text-accent underline underline-offset-4">+62 851 5635 0536</button>
+        <a href="https://www.linkedin.com/in/agilkrisnatripujianto" target="_blank" rel="noopener noreferrer" class="text-ink hover:text-accent underline underline-offset-4">LinkedIn ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CASE STUDY ARCHITECTURE DRAWER -->
+  <div id="caseDrawer" class="fixed inset-0 z-50 hidden bg-slate-950/40 backdrop-blur-xs flex justify-end">
+    <div class="bg-white w-full max-w-xl h-full border-l border-line p-6 sm:p-8 overflow-y-auto flex flex-col justify-between space-y-6">
+      <div class="space-y-5">
+        <div class="flex items-center justify-between border-b border-line pb-4">
+          <span id="drawerTag" class="font-mono text-xs text-accent font-semibold">BLUEPRINT</span>
+          <button onclick="closeCaseDrawer()" class="font-mono text-xs px-2.5 py-1 border border-line rounded hover:bg-surface">ESC / Close</button>
+        </div>
+        <h3 id="drawerTitle" class="font-serif text-2xl sm:text-3xl text-ink"></h3>
+        <p id="drawerSummary" class="text-sm text-muted leading-relaxed"></p>
+        <div class="space-y-2">
+          <div class="font-mono text-xs uppercase text-muted">System Flow &amp; Execution Snippet</div>
+          <pre id="drawerCode" class="bg-surface border border-line rounded-lg p-4 font-mono text-xs text-ink overflow-x-auto leading-relaxed"></pre>
+        </div>
+        <div class="space-y-2">
+          <div class="font-mono text-xs uppercase text-muted">Verified Outcomes</div>
+          <ul id="drawerOutcomes" class="space-y-1.5 text-sm text-ink list-disc list-inside"></ul>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-line flex justify-end">
+        <button onclick="closeCaseDrawer()" class="px-4 py-2 text-xs font-mono bg-ink text-white rounded-md">Done Inspecting</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMAND PALETTE (CTRL+K) -->
+  <div id="cmdPalette" class="fixed inset-0 z-50 hidden bg-slate-950/40 backdrop-blur-xs flex items-start justify-center pt-20 px-4">
+    <div class="bg-white border border-line rounded-xl shadow-2xl w-full max-w-lg overflow-hidden">
+      <div class="p-3 border-b border-line flex items-center gap-2">
+        <span class="font-mono text-xs text-accent">&gt;</span>
+        <input
+          id="cmdInput"
+          type="text"
+          placeholder="Type a command, skill (Playwright, JMeter), or section..."
+          oninput="filterCommands(this.value)"
+          class="w-full text-sm focus:outline-none bg-transparent text-ink"
+        />
+        <button onclick="closeCmdPalette()" class="font-mono text-[10px] px-1.5 py-0.5 border border-line rounded text-muted">ESC</button>
+      </div>
+      <div id="cmdList" class="max-h-72 overflow-y-auto divide-y divide-line text-sm">
+        <button onclick="runCmd('#sandbox')" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>Jump to Execution Sandbox &amp; CI/CD Simulator</span>
+          <span class="font-mono text-xs text-muted">01</span>
+        </button>
+        <button onclick="runCmd('#engineering-lab')" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>Open Live QA Engineering Lab (AI Crawler, API &amp; ROI)</span>
+          <span class="font-mono text-xs text-accent">02</span>
+        </button>
+        <button onclick="runCmd('#cases')" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>Explore AI Crawler &amp; HRIS Case Studies</span>
+          <span class="font-mono text-xs text-muted">03</span>
+        </button>
+        <button onclick="runCmd('#matrix')" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>Inspect Combinatorial Test Case Matrix</span>
+          <span class="font-mono text-xs text-muted">04</span>
+        </button>
+        <button onclick="runCmd('#experience')" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>View Experience (Indodev, SiCepat, Lintasarta)</span>
+          <span class="font-mono text-xs text-muted">05</span>
+        </button>
+        <button onclick="toggleInspector(); closeCmdPalette();" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>Toggle Playwright DOM Inspector Overlay</span>
+          <span class="font-mono text-xs text-accent">ACTION</span>
+        </button>
+        <button onclick="copyText('agilkrisna01@gmail.com'); closeCmdPalette();" class="cmd-item w-full text-left px-4 py-3 hover:bg-surface flex justify-between items-center">
+          <span>Copy Email (agilkrisna01@gmail.com)</span>
+          <span class="font-mono text-xs text-accent">COPY</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div id="contactModal" class="fixed inset-0 z-50 hidden bg-slate-950/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white border border-line rounded-xl max-w-md w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-line pb-3">
+        <h3 class="font-semibold text-base text-ink">Direct Contact</h3>
+        <button onclick="closeContactModal()" class="font-mono text-xs text-muted hover:text-ink">Close</button>
+      </div>
+      <p class="text-sm text-muted">
+        Available for Technical QA, Automation Engineering, and SDET discussions across the Jakarta Metropolitan Area or remote teams.
+      </p>
+      <div class="space-y-2.5 font-mono text-xs">
+        <div class="p-3 rounded-lg bg-surface border border-line flex items-center justify-between">
+          <span class="text-ink">agilkrisna01@gmail.com</span>
+          <button onclick="copyText('agilkrisna01@gmail.com')" class="px-2.5 py-1 bg-ink text-white rounded">Copy</button>
+        </div>
+        <div class="p-3 rounded-lg bg-surface border border-line flex items-center justify-between">
+          <span class="text-ink">+62 851 5635 0536</span>
+          <button onclick="copyText('+62 851 5635 0536')" class="px-2.5 py-1 bg-ink text-white rounded">Copy</button>
+        </div>
+        <a href="https://www.linkedin.com/in/agilkrisnatripujianto" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-lg bg-accentSoft border border-teal-200 text-accent text-center font-semibold hover:bg-teal-100/60 transition">
+          Open LinkedIn Profile ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Case Study Blueprint Data
+    const caseBlueprints = [
+      {
+        tag: "CASE 01 · AI & PLAYWRIGHT",
+        title: "AI-Driven Autonomous Web Crawler & Playwright Generator",
+        summary: "A local Express + Tailwind CSS automation workspace built for SunFish HRIS staging environments. It crawls rendered DOM trees, generates structured test cases and Playwright scripts using LLM prompts, and injects authenticated bearer tokens to eliminate flaky UI login steps.",
+        code: `// Stage 1: Session Bearer Token Injection\nawait context.addInitScript(token => {\n  window.localStorage.setItem('auth_token', token);\n}, process.env.STAGING_BEARER_TOKEN);\n\n// Stage 2: Autonomous DOM Crawl & Spec Generation\nawait page.goto('/hris/leave-setting');\nconst domSnapshot = await extractInteractiveNodes(page);\nawait generatePlaywrightSpec(domSnapshot);`,
+        outcomes: [
+          "Four-stage workflow: staging setup, AI DOM crawling, script generation, and review/re-run.",
+          "Eliminated repetitive manual login overhead across test suites.",
+          "Accelerated regression coverage creation for enterprise HRIS forms."
+        ]
+      },
+      {
+        tag: "CASE 02 · COMBINATORIAL QA",
+        title: "Multi-Country Leave Setting Combinatorial Suite",
+        summary: "Structured 50 positive combinatorial scenarios validating region-specific leave rules, carry-forward caps, pro-ration formulas, and public holiday calendars across Singapore, Thailand, and Vietnam.",
+        code: `Country Matrix:\n├── Singapore (SG): Statutory annual leave + carry-forward limit\n├── Thailand  (TH): Songkran holiday overlap & pro-rata rules\n└── Vietnam   (VN): Tenure-based (+1 day / 5 yrs) increment`,
+        outcomes: [
+          "50 high-value positive combinations executed without redundant test bloat.",
+          "Zero statutory calculation regressions across regional releases."
+        ]
+      },
+      {
+        tag: "CASE 03 · CI/CD & LOAD",
+        title: "Enterprise CI/CD Regression & JMeter / k6 Performance Gate",
+        summary: "Embedded Selenium WebDriver, Robot Framework, and Cypress suites into Jenkins CI/CD build pipelines alongside Postman REST contract validation and JMeter/k6 load tests for BUMN and banking/finance clients.",
+        code: `Jenkins Pipeline:\n[Build Trigger] -> [Selenium/Cypress E2E] -> [Postman API] -> [JMeter/k6 Load]`,
+        outcomes: [
+          "Reduced post-release production defects by over 30%.",
+          "Validated system stability under high-traffic enterprise concurrency."
+        ]
+      },
+      {
+        tag: "CASE 04 · WORKFLOW OPS",
+        title: "n8n & Google Sheets Automated Execution Loop",
+        summary: "Local n8n orchestration triggering Playwright CLI scripts (loginTest.js), parsing execution outcomes, and automatically recording audit rows into Google Sheets.",
+        code: `[n8n Trigger] -> [Execute Command: node loginTest.js] -> [Parse JSON] -> [Google Sheets Append]`,
+        outcomes: [
+          "Automated pass/fail telemetry logging without manual report compilation.",
+          "Clear visibility for QA and product stakeholders."
+        ]
+      },
+      {
+        tag: "CASE 05 · WEB ENGINEERING",
+        title: "Customer Complaint to QA Ticket Portal",
+        summary: "Developed at PT. Aplikanusa Lintasarta to transform customer complaints into structured QA tickets with priority levels, team assignment, status tracking, and Email/WhatsApp notifications.",
+        code: `[Customer Complaint Form] -> [Priority & Team Routing] -> [QA Ticket Lifecycle] -> [Email/WA Alert]`,
+        outcomes: [
+          "Bridged customer support intake directly with QA engineering triage.",
+          "Built with HTML, CSS, JavaScript, Bootstrap, and notification webhooks."
+        ]
+      }
+    ];
+
+    // 1. Toggle Playwright DOM Inspector Overlay
+    function toggleInspector() {
+      const active = document.body.classList.toggle('inspect-active');
+      const dot = document.getElementById('inspectorDot');
+      const btn = document.getElementById('inspectorToggleBtn');
+      if (active) {
+        dot.classList.remove('bg-slate-300');
+        dot.classList.add('bg-teal-500', 'animate-ping');
+        btn.classList.add('border-teal-600', 'bg-accentSoft', 'text-accent');
+        showToast('DOM Inspector ON — hover elements to inspect QA selectors');
+      } else {
+        dot.classList.add('bg-slate-300');
+        dot.classList.remove('bg-teal-500', 'animate-ping');
+        btn.classList.remove('border-teal-600', 'bg-accentSoft', 'text-accent');
+        showToast('DOM Inspector OFF');
+      }
+    }
+
+    // 2. Interactive CI/CD Pipeline Simulation
+    function runPipelineSimulation() {
+      const btn = document.getElementById('runPipelineBtn');
+      const log = document.getElementById('pipelineLog');
+      const cards = document.querySelectorAll('.stage-card');
+
+      btn.disabled = true;
+      btn.classList.add('opacity-60');
+      log.innerHTML = `<div class="text-accent font-medium">[RUNNING] Triggering Jenkins build & injecting staging bearer token...</div>`;
+
+      cards.forEach(card => {
+        card.classList.remove('border-teal-500', 'bg-accentSoft/40');
+        const badge = card.querySelector('.stage-badge');
+        badge.textContent = 'WAIT';
+        badge.className = 'stage-badge px-1.5 py-0.5 rounded bg-slate-100 text-muted font-semibold';
+      });
+
+      const messages = [
+        '[STAGE 1/4] Jenkins build #4192 initialized · Auth token injected.',
+        '[STAGE 2/4] Playwright E2E suite passed 50/50 multi-country leave scenarios.',
+        '[STAGE 3/4] Postman API contracts & k6 load test passed (p95: 118ms).',
+        '[STAGE 4/4] n8n synced execution telemetry to Google Sheets. All gates PASSED.'
+      ];
+
+      cards.forEach((card, idx) => {
+        setTimeout(() => {
+          card.classList.add('border-teal-500', 'bg-accentSoft/40');
+          const badge = card.querySelector('.stage-badge');
+          badge.textContent = idx === 3 ? 'SYNCED' : 'PASS';
+          badge.className = 'stage-badge px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold';
+          log.innerHTML = `<div class="text-ink font-medium">${messages[idx]}</div><div>Execution time: ${(0.21 * (idx + 1)).toFixed(2)}s</div>`;
+
+          if (idx === cards.length - 1) {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60');
+            showToast('Quality Gate Passed (4/4 Stages)');
+          }
+        }, (idx + 1) * 450);
+      });
+    }
+
+    // 3. Before vs After Slider
+    function updateComparisonSlider(val) {
+      const label = document.getElementById('sliderPercentLabel');
+      const beforeCard = document.getElementById('beforeCard');
+      const afterCard = document.getElementById('afterCard');
+      label.textContent = `${val}% Automated`;
+      beforeCard.style.opacity = val < 50 ? '1' : '0.5';
+      afterCard.style.opacity = val >= 50 ? '1' : '0.5';
+    }
+
+    // 4. Case Studies Filter
+    function filterCases(category) {
+      document.querySelectorAll('.case-filter').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.className = 'case-filter px-3 py-1.5 rounded-md bg-ink text-white border border-ink';
+        } else {
+          btn.className = 'case-filter px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink';
+        }
+      });
+
+      document.querySelectorAll('.case-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // 5. Combinatorial Matrix Filter
+    function filterMatrix(type) {
+      document.querySelectorAll('.matrix-btn').forEach(btn => {
+        if (btn.dataset.type === type) {
+          btn.className = 'matrix-btn px-3 py-1.5 rounded-md bg-ink text-white border border-ink';
+        } else {
+          btn.className = 'matrix-btn px-3 py-1.5 rounded-md bg-white text-muted border border-line hover:text-ink';
+        }
+      });
+
+      document.querySelectorAll('.matrix-row').forEach(row => {
+        if (type === 'ALL' || row.dataset.type === type) {
+          row.classList.remove('hidden');
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+    }
+
+    // 6. Case Blueprint Drawer
+    function openCaseDrawer(index) {
+      const data = caseBlueprints[index];
+      if (!data) return;
+      document.getElementById('drawerTag').textContent = data.tag;
+      document.getElementById('drawerTitle').textContent = data.title;
+      document.getElementById('drawerSummary').textContent = data.summary;
+      document.getElementById('drawerCode').textContent = data.code;
+      document.getElementById('drawerOutcomes').innerHTML = data.outcomes.map(item => `<li>${item}</li>`).join('');
+      document.getElementById('caseDrawer').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCaseDrawer() {
+      document.getElementById('caseDrawer').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // 7. Command Palette (Ctrl/Cmd + K)
+    function openCmdPalette() {
+      const palette = document.getElementById('cmdPalette');
+      const input = document.getElementById('cmdInput');
+      palette.classList.remove('hidden');
+      input.value = '';
+      filterCommands('');
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closeCmdPalette() {
+      document.getElementById('cmdPalette').classList.add('hidden');
+    }
+
+    function filterCommands(query) {
+      const q = query.toLowerCase();
+      document.querySelectorAll('.cmd-item').forEach(item => {
+        item.classList.toggle('hidden', !item.textContent.toLowerCase().includes(q));
+      });
+    }
+
+    function runCmd(hash) {
+      closeCmdPalette();
+      const target = document.querySelector(hash);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 8. Contact Modal & Clipboard
+    function openContactModal() {
+      document.getElementById('contactModal').classList.remove('hidden');
+    }
+
+    function closeContactModal() {
+      document.getElementById('contactModal').classList.add('hidden');
+    }
+
+    function copyText(text) {
+      const el = document.createElement('input');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast(`Copied: ${text}`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2800);
+    }
+
+    // Global Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openCmdPalette();
+      }
+      if (e.key === 'Escape') {
+        closeCmdPalette();
+        closeCaseDrawer();
+        closeContactModal();
+      }
+    });
+
+    // 9. Interactive QA Engineering Lab Logic
+    const crawlerTemplates = {
+      leave: {
+        url: '/hris/time/leave-setting',
+        code: `test('SG/TH/VN Leave Setting combinatorial rule', async ({ page }) => {\n  await page.goto('/hris/time/leave-setting');\n  await page.getByLabel('Country Policy').selectOption('SG');\n  await page.getByLabel('Carry Forward Cap').fill('14');\n  await page.getByRole('button', { name: 'Save Policy' }).click();\n  await expect(page.getByText('Leave configuration saved')).toBeVisible();\n});`
+      },
+      auth: {
+        url: '/hris/dashboard (Session State Injection)',
+        code: `// Bypass UI Login via Bearer Token Injection\nawait context.addInitScript(token => {\n  localStorage.setItem('sunfish_bearer', token);\n}, process.env.STAGING_TOKEN);\nawait page.goto('/hris/dashboard');\nawait expect(page.locator('[data-testid="user-session"]')).toBeVisible();`
+      },
+      attendance: {
+        url: '/hris/time/attendance-approval',
+        code: `test('Supervisor approves overtime request', async ({ page }) => {\n  await page.goto('/hris/time/attendance-approval');\n  await page.locator('tr[data-req-id="OT-904"] .btn-approve').click();\n  await expect(page.locator('.toast-success')).toContainText('Approved');\n});`
+      }
+    };
+
+    function updateCrawlerPreview() {
+      const key = document.getElementById('crawlerModuleSelect').value;
+      const tpl = crawlerTemplates[key];
+      document.getElementById('crawlerTargetUrl').textContent = tpl.url;
+      document.getElementById('crawlerCodeOutput').textContent = tpl.code;
+    }
+
+    function simulateCrawlerRun() {
+      const status = document.getElementById('crawlerStatusText');
+      status.textContent = 'Crawling DOM & generating assertions...';
+      status.className = 'font-mono text-xs text-accent font-medium';
+      setTimeout(() => {
+        status.textContent = '✓ Verified: 14 DOM nodes mapped · Spec ready (0 flaky locators)';
+        showToast('AI Playwright Spec generated & verified');
+      }, 450);
+    }
+
+    const apiPayloads = {
+      valid: {
+        badge: '200 OK · 84ms',
+        badgeClass: 'text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded',
+        assertion: '3/3 PASSED',
+        assertionClass: 'text-emerald-700 font-semibold',
+        body: `{\n  "status": "SUCCESS",\n  "country": "SG",\n  "eligibleDays": 14,\n  "carryForwardApplied": true,\n  "schemaValidated": true\n}`
+      },
+      expired: {
+        badge: '401 UNAUTHORIZED · 32ms',
+        badgeClass: 'text-amber-700 bg-amber-50 px-2 py-0.5 rounded',
+        assertion: 'SECURITY GATE OK',
+        assertionClass: 'text-amber-700 font-semibold',
+        body: `{\n  "status": "ERROR",\n  "code": "TOKEN_EXPIRED",\n  "message": "Bearer session expired; refresh token required."\n}`
+      },
+      invalid: {
+        badge: '422 UNPROCESSABLE · 41ms',
+        badgeClass: 'text-rose-700 bg-rose-50 px-2 py-0.5 rounded',
+        assertion: 'VALIDATION CAUGHT',
+        assertionClass: 'text-rose-700 font-semibold',
+        body: `{\n  "status": "VALIDATION_FAILED",\n  "field": "carryForwardCap",\n  "constraint": "Must be between 0 and 30 days"\n}`
+      }
+    };
+
+    function runApiScenario(type) {
+      document.querySelectorAll('.api-scenario-btn').forEach(btn => {
+        if (btn.dataset.scenario === type) {
+          btn.className = 'api-scenario-btn px-2.5 py-1 rounded bg-ink text-white transition';
+        } else {
+          btn.className = 'api-scenario-btn px-2.5 py-1 rounded bg-white border border-line text-muted hover:text-ink transition';
+        }
+      });
+
+      const data = apiPayloads[type];
+      const badge = document.getElementById('apiLatencyBadge');
+      const assertion = document.getElementById('apiAssertionResult');
+      badge.textContent = data.badge;
+      badge.className = data.badgeClass;
+      assertion.textContent = data.assertion;
+      assertion.className = data.assertionClass;
+      document.getElementById('apiResponseOutput').textContent = data.body;
+    }
+
+    function calculateQaRoi() {
+      const cases = parseInt(document.getElementById('roiCasesInput').value, 10);
+      const releases = parseInt(document.getElementById('roiReleasesInput').value, 10);
+      document.getElementById('roiCasesVal').textContent = `${cases} cases`;
+      document.getElementById('roiReleasesVal').textContent = `${releases} releases / mo`;
+
+      const hoursSaved = ((cases * 0.06) * releases).toFixed(1);
+      const defectDrop = Math.min(48, Math.round(28 + (cases / 50) * 1.5));
+      document.getElementById('roiHoursSaved').textContent = `${hoursSaved} hrs`;
+      document.getElementById('roiDefectDrop').textContent = `-${defectDrop}%`;
+    }
+
+    // Initialize Lab Widgets on Load
+    updateCrawlerPreview();
+    runApiScenario('valid');
+    calculateQaRoi();
+  </script>
+</body>
+</html>
